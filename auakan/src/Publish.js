@@ -5,7 +5,7 @@ export function Publish() {
     //console.log(publicaciones);
     return (
         <ul>
-            {publics.map((publica) => (
+           {publics.map((publica) => (
                 //<li key = {publica.id}>{publica.title}</li>
                 <Publishcard key = {publica.id} publica={publica}/>
             ))}
