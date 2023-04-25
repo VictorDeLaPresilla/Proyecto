@@ -1,9 +1,11 @@
-export function Publish(){
+import publics from "./publi.json";
+export function Publish() {
+    //console.log(publicaciones);
     return (
         <ul>
-          <li>Peli1</li>
-          <li>Peli1</li>
-          <li>Peli1</li>
+            {publics.map((publica) => 
+                 <li>{publica.title}</li>
+            )}
         </ul>
     );
 }
