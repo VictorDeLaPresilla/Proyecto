@@ -5,3 +5,10 @@
     padding: 40px;
     justify-content: center;
 }
+
+@media (max-width: 560px){
+    .publishgrid{
+        grid-template-columns: 100%;
+        /*justify-content: center;*/
+    }
+}

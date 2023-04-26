@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import styles from "./App.module.css"
 import './App.css';
 import { Publish } from './Publish';
 
@@ -26,7 +27,7 @@ export function App() {
   return (
     <div>
       <header>
-        <h1>Publicaciones pendientes</h1>
+        <h1 className={styles.title}>Publicaciones pendientes</h1>
       </header>
       <main>
         <ul>
