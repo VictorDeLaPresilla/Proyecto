@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Detalles from "./Detalles.json"
-import styles from "./PublishDetails.module.css"
+import movie from "./Detalles.json";
+import styles from "./PublishDetails.module.css";
 import { get } from "../Util/Client";
 export function  PublishDetails(){
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
-        get("/movie/" + movieId).then((data) => {
+        get("/movie/" + movieId).then((data) =>{
             setMovie(data);
         });
     }, [movieId]);
@@ -17,26 +17,26 @@ export function  PublishDetails(){
         return null;
     }
 
-    const imageurl = "https://image.tmdb.org/t/p/w500" + Detalles.poster_path;
+    const imageurl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
     return (
         <div className={styles.DetailsContainer}>
             <img 
                 className={`${styles.col}  ${styles.publicimage}`} 
                 src={imageurl} 
-                alt={Detalles.tittle}
+                alt={movie.tittle}
             />
             <div className={`${styles.col} ${styles.pubdet}`}>
                 <p className={styles.firstItem}>
                     <strong>Producto: </strong>
-                     {Detalles.title}
+                     {movie.title}
                 </p>
                 <p>
                     <strong>detalles: </strong> 
-                    {Detalles.overview}
+                    {movie.overview}
                 </p>
                 <p>
                     <strong>Tipo de Producto: </strong>
-                    {Detalles.genres.map((genres) => genres.name).join(", ")}
+                    {movie.genres.map((genres) => genres.name).join(", ")}
                 </p>
             </div>
         </div>

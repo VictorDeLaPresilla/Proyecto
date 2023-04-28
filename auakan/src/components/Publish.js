@@ -11,11 +11,11 @@ export function Publish() {
     //const offerState = useState([]);
     //const offer = offerState[0];
     //const setOffer = offerState[1];
-    const [movie, setMovie] = useState([]);
+    const [publics, setPublics] = useState([]);
     //const { offerId } = useParams();
     useEffect(() => {
-        get("/discover/movie").then(data => {
-            setMovie(data.results);
+        get("/discover/movie").then((data) => {
+            setPublics(data.results);
             //console.log(offer);
         });
     }, []);
