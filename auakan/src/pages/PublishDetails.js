@@ -1,16 +1,32 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import Detalles from "./Detalles.json"
 import styles from "./PublishDetails.module.css"
+import { get } from "../Util/Client";
 export function  PublishDetails(){
+    const { movieId } = useParams();
+    const [movie, setMovie] = useState(null);
+
+    useEffect(() => {
+        get("/movie/" + movieId).then((data) => {
+            setMovie(data);
+        });
+    }, [movieId]);
+
+    if(!movie){
+        return null;
+    }
+
     const imageurl = "https://image.tmdb.org/t/p/w500" + Detalles.poster_path;
     return (
         <div className={styles.DetailsContainer}>
             <img 
-                className={styles.col + "" + styles.publicimage} 
+                className={`${styles.col}  ${styles.publicimage}`} 
                 src={imageurl} 
                 alt={Detalles.tittle}
             />
-            <div className={styles.col}>
-                <p>
+            <div className={`${styles.col} ${styles.pubdet}`}>
+                <p className={styles.firstItem}>
                     <strong>Producto: </strong>
                      {Detalles.title}
                 </p>
