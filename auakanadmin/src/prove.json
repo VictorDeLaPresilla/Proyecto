@@ -1,0 +1,32 @@
+[
+    {
+        "id": "12",
+        "nombre_prod": "Tilapia",
+        "detalles_prod": "a la talla",
+        "precio_prod": "20",
+        "entrega_prod": "Entrega a domicilio",
+        "fotografia_prod": " ",
+        "visible": "0",
+        "nombre": "Carlos"
+    },
+    {
+        "id": "13",
+        "nombre_prod": "Filete",
+        "detalles_prod": "Asado",
+        "precio_prod": "80",
+        "entrega_prod": "Entrega a domicilio",
+        "fotografia_prod": " ",
+        "visible": "0",
+        "nombre": "Carlos"
+    },
+    {
+        "id": "14",
+        "nombre_prod": "Camaron",
+        "detalles_prod": "fresco",
+        "precio_prod": "40",
+        "entrega_prod": "Recoger en domicilio",
+        "fotografia_prod": " ",
+        "visible": "0",
+        "nombre": "Carlos"
+    }
+]
