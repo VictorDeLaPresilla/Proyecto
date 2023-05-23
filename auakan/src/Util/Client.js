@@ -1,4 +1,4 @@
-const API = 'https://api.themoviedb.org/3';
+/*const API = 'https://api.themoviedb.org/3';
 export function get(path) {
     return fetch(API + path, {
         headers: {
@@ -7,5 +7,11 @@ export function get(path) {
             "Content-Type": "application/json;charset=utf-8",
         },
     }).then(result => result.json());
+
+}*/
+
+const API = 'https://auakanapi.000webhostapp.com/api.php?request=getAnuncios';
+export function get() {
+    return fetch(API).then(result => result.json());
 
 }
