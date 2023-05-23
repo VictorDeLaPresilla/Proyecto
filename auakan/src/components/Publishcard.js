@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+/*import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./Publishcard.module.css";
 export function Publishcard({ publica }) {
     const imageurl = "https://auakanapi.000webhostapp.com/api.php?request=getAnuncios" + publica.fotografia_prod ;
@@ -16,7 +16,7 @@ export function Publishcard({ publica }) {
             <div>{publica.nombre_prod}</div>
         </li>
     );
-}
+}*/
 /*import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./Publishcard.module.css";
 export function Publishcard({ publica }) {
