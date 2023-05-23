@@ -9,7 +9,7 @@ export function Publishcard({ publica }) {
             width={230}
             height={345} 
             className={styles.publishimage}
-            src = {publica.fotografia_prod[0]} 
+            src = {publica.fotografia_prod} 
             alt = {publica.nombre_prod}/>
         </Link>
             
