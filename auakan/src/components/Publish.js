@@ -3,13 +3,13 @@ import styles from "./Publish.module.css"
 import { Publishcard } from "./Publishcard";
 import publics from "./publi.json";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { get } from "../Util/Client";
+import { fetchData } from "../Util/Client";
 
 export function Publish() {
     const [publics, setPublics] = useState([]);
   
     useEffect(() => {
-      get().then((data) => {
+      fetchData().then((data) => {
         setPublics(data);
       });
     }, []);

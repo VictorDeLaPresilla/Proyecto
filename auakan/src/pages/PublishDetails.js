@@ -1,95 +1,88 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchData } from "../Util/Client";
 import styles from "./PublishDetails.module.css";
-import { get } from "../Util/Client";
+import BotonPublicar from "../components/BotonPublicar";
 
 export function PublishDetails() {
-  const { productoId } = useParams();
-  const [producto, setProducto] = useState(null);
 
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [item, setItem] = useState(null);
+  console.log()
   useEffect(() => {
-    get("/producto/" + productoId).then((data) => {
-      setProducto(data);
+    fetchData()
+      .then((result) => {
+        const filteredData = result.filter((item) => item.id === id);
+        const updatedData = filteredData.map((item) => ({
+          ...item,
+          publicado: localStorage.getItem(`publicado_${item.id}`) === "true",
+        }));
+        setData(updatedData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [id]);
+
+  const handlePublicar = (itemId) => {
+    const updatedData = data.map((item) => {
+      if (item.id === itemId) {
+        localStorage.setItem(`publicado_${itemId}`, "true");
+        return {
+          ...item,
+          publicado: true,
+        };
+      }
+      return item;
     });
-  }, [productoId]);
+    setData(updatedData);
+  };
 
-  if (!producto) {
-    return null;
-  }
-
-  const imageurl =
-    "https://auakanapi.000webhostapp.com/api.php?request=getAnuncios" +
-    producto.fotografia_prod;
+  const handleRetirar = (itemId) => {
+    const updatedData = data.map((item) => {
+      if (item.id === itemId) {
+        localStorage.setItem(`publicado_${itemId}`, "false");
+        return {
+          ...item,
+          publicado: false,
+        };
+      }
+      return item;
+    });
+    setData(updatedData);
+  };
 
   return (
     <div className={styles.DetailsContainer}>
-      <img
-        className={`${styles.col}  ${styles.publicimage}`}
-        src={imageurl}
-        alt={producto.nombre_prod}
-      />
-      <div className={`${styles.col} ${styles.pubdet}`}>
-        <p className={styles.firstItem}>
-          <strong>Producto: </strong>
-          {producto.nombre_prod}
-        </p>
-        <p>
-          <strong>Detalles: </strong>
-          {producto.detalles_prod}
-        </p>
-        <p>
-          <strong>Tipo de Producto: </strong>
-          {console.log(producto)}
-          {producto.nombre}
-        </p>
-      </div>
+      {data.map((item) => (
+        <div key={item.id} className={styles.cardContainer}>
+          <img className={styles.publicimage} src={item.fotografia_prod} alt={item.nombre} />
+          <div className={styles.pubdet}>
+            <p className={styles.firstItem}>
+              <strong>Producto: </strong>
+              {item.nombre_prod}
+            </p>
+            <p>
+              <strong>Detalles del producto: </strong>
+              {item.detalles_prod}
+            </p>
+            <p>
+              <strong>Nombre del vendedor: </strong>
+              {item.nombre}
+            </p>
+          </div>
+          <div>
+            <BotonPublicar
+              tarjetaId={item.id}
+              publicado={item.publicado}
+              onPublicar={handlePublicar}
+              onRetirar={handleRetirar}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-
-
-/*import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import movie from "./Detalles.json";
-import styles from "./PublishDetails.module.css";
-import { get } from "../Util/Client";
-export function  PublishDetails(){
-    const { movieId } = useParams();
-    const [movie, setMovie] = useState(null);
-
-    useEffect(() => {
-        get("/movie/" + movieId).then((data) =>{
-            setMovie(data);
-        });
-    }, [movieId]);
-
-    if(!movie){
-        return null;
-    }
-
-    const imageurl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-    return (
-        <div className={styles.DetailsContainer}>
-            <img 
-                className={`${styles.col}  ${styles.publicimage}`} 
-                src={imageurl} 
-                alt={movie.tittle}
-            />
-            <div className={`${styles.col} ${styles.pubdet}`}>
-                <p className={styles.firstItem}>
-                    <strong>Producto: </strong>
-                     {movie.title}
-                </p>
-                <p>
-                    <strong>detalles: </strong> 
-                    {movie.overview}
-                </p>
-                <p>
-                    <strong>Tipo de Producto: </strong>
-                    {movie.genres.map((genres) => genres.name).join(", ")}
-                    {publics.nombre}
-                </p>
-            </div>
-        </div>
-    );
-}*/
+//export default item;

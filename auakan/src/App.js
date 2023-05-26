@@ -42,7 +42,7 @@ export function App() {
       </header>
       <main>
         <Switch>
-          <Route exact path="/publicacion/:movieId"><PublishDetails /></Route>
+          <Route exact path="/publicacion/:id"><PublishDetails /></Route>
           <Route path="/"><Inicio /></Route>
         </Switch>
       </main>

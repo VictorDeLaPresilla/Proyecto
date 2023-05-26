@@ -22,3 +22,17 @@
 .firstItem{
     margin-top: 0;
 }
+.leyendas{
+    font-size: 1.8rem;
+}
+
+.botonescontainer{
+    font-size: 1.8rem;
+    margin: 20px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 30px;
+    width: 90%;
+    height:50px;
+}
+

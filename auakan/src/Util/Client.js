@@ -11,7 +11,7 @@ export function get(path) {
 }*/
 
 const API = 'https://auakanapi.000webhostapp.com/api.php?request=getAnuncios';
-export function get() {
+export function fetchData() {
     return fetch(API).then(result => result.json());
 
 }
